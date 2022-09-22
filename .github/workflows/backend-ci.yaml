@@ -23,11 +23,11 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - name: Install Dependencies
-      run: yarn install
+      run: npm install
       working-directory: ./backend
     - name: Run Tests
-      run: yarn test:ci -- --passWithNoTests
+      run: npm test:ci -- --passWithNoTests
       working-directory: ./backend
     - name: Run Linter
-      run: yarn lint
+      run: npm lint
       working-directory: ./backend
