@@ -21,7 +21,7 @@ export const User = db.define('user', {
   },
   isVerified: {
     type: DataTypes.BOOLEAN,
-    defaultValue: 0,
+    defaultValue: false,
   },
 }, {
   timestamps: false,

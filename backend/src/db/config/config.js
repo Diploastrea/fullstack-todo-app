@@ -15,6 +15,7 @@ module.exports = {
     database: config.mysql.database,
     host: config.mysql.host,
     dialect: 'mysql',
+    timezone: '+02:00',
   },
   production: {
     username: config.mysql.user,
@@ -22,5 +23,6 @@ module.exports = {
     database: config.mysql.database,
     host: config.mysql.host,
     dialect: 'mysql',
+    timezone: '+02:00',
   },
 };
