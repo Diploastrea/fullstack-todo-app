@@ -1,4 +1,6 @@
+import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
+import config from '../config';
 import { User } from '../models/User';
 
 export function validateLogin(email, password) {
@@ -9,7 +11,7 @@ export function validateLogin(email, password) {
 
 export async function verifyUser(email, password) {
   const user = await User.findOne({
-    attributes: ['id', 'password'],
+    attributes: ['id', 'name', 'password'],
     where: {
       email,
     },
@@ -20,10 +22,25 @@ export async function verifyUser(email, password) {
   return user;
 }
 
+export async function generateToken(user) {
+  const { id, name } = user;
+  return jwt.sign(
+    {
+      id,
+      name,
+    },
+    config.access_secret,
+  );
+}
+
 export const loginService = {
   async loginUser(email, password) {
     validateLogin(email, password);
     const user = await verifyUser(email, password);
-    return user;
+    const accessToken = await generateToken(user);
+    return {
+      status: 'ok',
+      token: accessToken,
+    };
   },
 };
