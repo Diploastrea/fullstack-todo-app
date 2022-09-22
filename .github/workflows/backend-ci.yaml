@@ -29,5 +29,5 @@ jobs:
       run: npm run test:ci -- --passWithNoTests
       working-directory: ./backend
     - name: Run Linter
-      run: npm lint
+      run: npm run lint
       working-directory: ./backend
