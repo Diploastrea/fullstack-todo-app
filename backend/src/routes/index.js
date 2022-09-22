@@ -1,3 +1,3 @@
-import apiRouter from './api.routes';
+import router from './api.routes';
 
-export const api = apiRouter;
+export default router;
