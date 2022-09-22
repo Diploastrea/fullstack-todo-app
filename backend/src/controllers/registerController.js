@@ -5,8 +5,8 @@ export const registerController = {
   async register(req, res, next) {
     try {
       const { name, email, password } = req.body;
-      const data = await registerService.registerUser(name, email, password);
-      res.status(201).json(data);
+      const newUser = await registerService.registerUser(name, email, password);
+      res.status(201).json(newUser);
     } catch (error) {
       next({
         status: registerErrors[error.message].status,
