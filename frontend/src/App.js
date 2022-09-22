@@ -7,7 +7,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload. Testing merging PR.
+          Edit <code>src/App.js</code> and save to reload. Merged PR.
         </p>
         <a
           className="App-link"
