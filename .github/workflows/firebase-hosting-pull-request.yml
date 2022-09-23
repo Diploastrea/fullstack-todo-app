@@ -12,10 +12,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: |
-          touch .env
-          echo REACT_APP_URL=${{ secrets.API_ENDPOINT }} >> .env
-          cat .env
       - run: npm ci && npm run build
         working-directory: ./frontend
       - uses: FirebaseExtended/action-hosting-deploy@v0
