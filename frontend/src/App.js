@@ -1,4 +1,4 @@
-import SignInSide from './components/homepage';
+import Homepage from './pages/Homepage';
 
 function App() {
   const user = false;
@@ -7,7 +7,7 @@ function App() {
       {user ? (
         <p>Welcome page</p>
       ) : (
-        <SignInSide />
+        <Homepage />
       )}
     </div>
   );
