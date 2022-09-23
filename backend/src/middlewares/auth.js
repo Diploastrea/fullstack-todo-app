@@ -10,8 +10,7 @@ export function verifyToken(req, res, next) {
     const decodedToken = verify(token, config.access_secret);
     req.headers.user = {
       id: decodedToken.id,
-      isAdmin: decodedToken.isAdmin,
-      isVerified: decodedToken.isVerified,
+      name: decodedToken.name,
     };
     return next();
   } catch (error) {
