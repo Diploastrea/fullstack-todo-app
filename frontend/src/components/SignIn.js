@@ -10,11 +10,6 @@ import LinkButton from './LinkButton';
 export default function SignIn({ onClick }) {
   const handleSubmit = (e) => {
     e.preventDefault();
-    const data = new FormData(e.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
   };
 
   return (
