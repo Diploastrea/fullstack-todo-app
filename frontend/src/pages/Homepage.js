@@ -29,7 +29,7 @@ export default function Homepage() {
       <Grid
         item
         sx={{
-          width: '50%',
+          width: '55%',
           backgroundImage: `url(${img})`,
           backgroundRepeat: 'no-repeat',
           backgroundSize: 'cover',
@@ -41,7 +41,7 @@ export default function Homepage() {
         component={Paper}
         elevation={6}
         square
-        sx={{ width: '50%' }}
+        sx={{ width: '45%' }}
       >
         <Box
           sx={{

@@ -5,6 +5,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import Alert from '@mui/material/Alert';
+import Snackbar from '@mui/material/Snackbar';
 import AlertTitle from '@mui/material/AlertTitle';
 import LinkButton from './LinkButton';
 import validateSignUp from '../utils/validateSignUp';
@@ -26,9 +27,13 @@ export default function SignUp({ onClick }) {
       setShowError,
       setErrorMessage,
     };
-    if (validateSignUp(input)) {
-      signUpUser({ ...input, setSignUpSuccessful });
-    }
+    const validInput = validateSignUp(input);
+    if (validInput) signUpUser({ ...input, setSignUpSuccessful });
+  };
+
+  const handleClose = (reason) => {
+    if (reason === 'clickaway') return;
+    setSignUpSuccessful(false);
   };
 
   return (
@@ -46,17 +51,17 @@ export default function SignUp({ onClick }) {
       >
         <TextField
           margin="normal"
-          id="name"
           label="Name"
           name="name"
+          type="text"
           autoComplete="name"
           sx={{ width: '100%' }}
         />
         <TextField
           margin="normal"
-          id="email"
           label="Email Address"
           name="email"
+          type="email"
           autoComplete="email"
           sx={{ width: '100%' }}
         />
@@ -65,7 +70,6 @@ export default function SignUp({ onClick }) {
           name="new-password"
           label="Password"
           type="password"
-          id="new-password"
           autoComplete="new-password"
           sx={{ width: '100%' }}
         />
@@ -74,17 +78,11 @@ export default function SignUp({ onClick }) {
           name="confirm-password"
           label="Confirm Password"
           type="password"
-          id="confirm-password"
           sx={{ width: '100%' }}
         />
         {showError && (
           <Alert severity="error" variant="filled">
             <AlertTitle align="center">{errorMessage}</AlertTitle>
-          </Alert>
-        )}
-        {signUpSuccessful && (
-          <Alert severity="success" variant="filled">
-            <AlertTitle align="center">Registration successful!</AlertTitle>
           </Alert>
         )}
         <Button
@@ -94,6 +92,16 @@ export default function SignUp({ onClick }) {
         >
           Sign Up
         </Button>
+        <Snackbar
+          anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+          open={signUpSuccessful}
+          autoHideDuration={5000}
+          onClose={handleClose}
+        >
+          <Alert severity="success" variant="filled">
+            Registration successful! You can now sign into your account!
+          </Alert>
+        </Snackbar>
         <Grid container>
           <Grid sx={{ margin: 'auto' }}>
             <LinkButton text="Already have an account? Sign In" onClick={onClick} />
