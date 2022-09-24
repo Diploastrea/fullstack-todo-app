@@ -1,15 +1,34 @@
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
 import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Checkbox from '@mui/material/Checkbox';
+import FormControlLabel from '@mui/material/FormControlLabel';
 import Grid from '@mui/material/Grid';
+import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import LinkButton from './LinkButton';
+import validateSignIn from '../utils/validateSignIn';
+import signInUser from '../services/signInService';
 
 export default function SignIn({ onClick }) {
+  const [showError, setShowError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+  const navigate = useNavigate();
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    const data = new FormData(e.currentTarget);
+    const input = {
+      email: data.get('email'),
+      password: data.get('password'),
+      setShowError,
+      setErrorMessage,
+    };
+    const validInput = validateSignIn(input);
+    if (validInput) signInUser({ ...input, navigate });
   };
 
   return (
@@ -45,6 +64,11 @@ export default function SignIn({ onClick }) {
           control={<Checkbox value="remember" color="primary" />}
           label="Remember me"
         />
+        {showError && (
+          <Alert severity="error" variant="filled">
+            <AlertTitle align="center">{errorMessage}</AlertTitle>
+          </Alert>
+        )}
         <Button
           type="submit"
           variant="contained"

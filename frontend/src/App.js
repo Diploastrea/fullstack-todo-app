@@ -1,11 +1,15 @@
+import { Route, Routes } from 'react-router-dom';
 import Homepage from './pages/Homepage';
+import Landing from './pages/Landing';
 
 function App() {
-  const user = false;
+  const loggedIn = window.localStorage.getItem('token');
   return (
     <div>
-      {user ? (
-        <p>Welcome page</p>
+      {loggedIn ? (
+        <Routes>
+          <Route path="/landing" element={Landing} />
+        </Routes>
       ) : (
         <Homepage />
       )}

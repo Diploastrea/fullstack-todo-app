@@ -30,6 +30,9 @@ export async function generateToken(user) {
       name,
     },
     config.access_secret,
+    {
+      expiresIn: '24h',
+    },
   );
 }
 

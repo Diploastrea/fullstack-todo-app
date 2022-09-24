@@ -1,22 +1,23 @@
-export default async function signUpUser({
-  name, email, password, setShowError, setErrorMessage, setSignUpSuccessful,
+export default async function signInUser({
+  email, password, setShowError, setErrorMessage, navigate,
 }) {
   try {
-    const userDetails = { name, email, password };
-    const response = await fetch(`${process.env.REACT_APP_URL}/api/register`, {
+    const input = { email, password };
+    const response = await fetch(`${process.env.REACT_APP_URL}/api/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json',
       },
-      body: JSON.stringify(userDetails),
+      body: JSON.stringify(input),
     });
     const data = await response.json();
-    if (response.status !== 201) {
+    if (response.status !== 200) {
       setShowError(true);
       setErrorMessage(data.message);
     } else {
-      setSignUpSuccessful(true);
+      window.localStorage.setItem('token', data.token);
+      navigate('/landing');
     }
   } catch (err) {
     setShowError(true);
