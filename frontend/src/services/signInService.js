@@ -18,6 +18,7 @@ export default async function signInUser({
     } else {
       window.localStorage.setItem('token', data.token);
       navigate('/landing');
+      window.location.reload();
     }
   } catch (err) {
     setShowError(true);

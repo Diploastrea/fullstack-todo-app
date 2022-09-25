@@ -18,7 +18,9 @@ export default function Homepage() {
     <Grid
       container
       sx={{
-        maxWidth: '55vw', margin: 'auto', marginTop: '10vh', height: '70vh',
+        maxWidth: '55vw',
+        margin: '10vh auto',
+        height: '70vh',
       }}
     >
       <GlobalStyles
