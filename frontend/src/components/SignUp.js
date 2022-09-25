@@ -1,20 +1,20 @@
-import * as React from 'react';
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Grid';
+import React, { useState } from 'react';
 import Alert from '@mui/material/Alert';
-import Snackbar from '@mui/material/Snackbar';
 import AlertTitle from '@mui/material/AlertTitle';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Grid from '@mui/material/Grid';
+import Snackbar from '@mui/material/Snackbar';
+import TextField from '@mui/material/TextField';
+import Typography from '@mui/material/Typography';
 import LinkButton from './LinkButton';
 import validateSignUp from '../utils/validateSignUp';
 import signUpUser from '../services/signUpService';
 
 export default function SignUp({ onClick }) {
-  const [showError, setShowError] = React.useState(false);
-  const [errorMessage, setErrorMessage] = React.useState('');
-  const [signUpSuccessful, setSignUpSuccessful] = React.useState(false);
+  const [showError, setShowError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+  const [signUpSuccessful, setSignUpSuccessful] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();

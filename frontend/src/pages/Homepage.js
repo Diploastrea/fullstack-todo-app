@@ -1,14 +1,14 @@
-import * as React from 'react';
-import GlobalStyles from '@mui/material/GlobalStyles';
-import Paper from '@mui/material/Paper';
+import React, { useState } from 'react';
 import Box from '@mui/material/Box';
+import GlobalStyles from '@mui/material/GlobalStyles';
 import Grid from '@mui/material/Grid';
+import Paper from '@mui/material/Paper';
 import img from '../assets/pictures/to-do-list.jpg';
 import SignIn from '../components/SignIn';
 import SignUp from '../components/SignUp';
 
 export default function Homepage() {
-  const [showSignIn, setShownSignIn] = React.useState(true);
+  const [showSignIn, setShownSignIn] = useState(true);
 
   const handleClick = () => {
     setShownSignIn(!showSignIn);
@@ -18,7 +18,9 @@ export default function Homepage() {
     <Grid
       container
       sx={{
-        maxWidth: '55vw', margin: 'auto', marginTop: '10vh', height: '70vh',
+        maxWidth: '55vw',
+        margin: '10vh auto',
+        height: '70vh',
       }}
     >
       <GlobalStyles

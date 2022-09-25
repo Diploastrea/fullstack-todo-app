@@ -18,7 +18,6 @@ export default async function signUpUser({
     } else {
       setSignUpSuccessful(true);
     }
-    return;
   } catch (err) {
     setShowError(true);
     setErrorMessage('Service unavailable, please try again later!');
