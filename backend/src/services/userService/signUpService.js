@@ -1,12 +1,14 @@
 import bcrypt from 'bcrypt';
-import { User } from '../models/User';
+import validator from 'validator';
+import { User } from '../../models/User';
 
-export function validateRegistration(name, email, password) {
+export function validateSignUp(name, email, password) {
   if (!name && !email && !password) throw new Error('emptyFields');
   if (!name) throw new Error('emptyName');
   if (!email) throw new Error('emptyEmail');
+  if (!validator.isEmail(email)) throw new Error('invalidEmail');
   if (!password) throw new Error('emptyPassword');
-  if (password.length < 8) throw new Error('shortPassword');
+  if (!validator.isStrongPassword(password, { minNumbers: 0 })) throw new Error('invalidPassword');
 }
 
 export async function verifyName(name) {
@@ -39,22 +41,15 @@ export async function createUser(name, email, password) {
     email,
     password,
   });
-  const newUser = User.findOne({
-    attributes: ['name', 'email'],
-    where: {
-      name,
-    },
-  });
-  return newUser;
 }
 
-export const registerService = {
-  async registerUser(name, email, password) {
-    validateRegistration(name, email, password);
+export const signUpService = {
+  async signUp(name, email, password) {
+    validateSignUp(name, email, password);
     await verifyName(name);
     await verifyEmail(email);
     const hashedPassword = await hashPassword(password);
-    const newUser = await createUser(name, email, hashedPassword);
-    return newUser;
+    await createUser(name, email, hashedPassword);
+    return { status: 'ok' };
   },
 };

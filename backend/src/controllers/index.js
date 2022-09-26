@@ -1,2 +1,3 @@
-export * from './registerController';
-export * from './loginController';
+export * from './signUpController';
+export * from './signInController';
+export * from './taskController';

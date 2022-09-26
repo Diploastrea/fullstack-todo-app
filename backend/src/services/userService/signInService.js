@@ -1,9 +1,9 @@
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
-import config from '../config';
-import { User } from '../models/User';
+import config from '../../config';
+import { User } from '../../models/User';
 
-export function validateLogin(email, password) {
+export function validateSignIn(email, password) {
   if (!email && !password) throw new Error('emptyFields');
   if (!email) throw new Error('emptyEmail');
   if (!password) throw new Error('emptyPassword');
@@ -36,9 +36,9 @@ export async function generateToken(user) {
   );
 }
 
-export const loginService = {
-  async loginUser(email, password) {
-    validateLogin(email, password);
+export const signInService = {
+  async signIn(email, password) {
+    validateSignIn(email, password);
     const user = await verifyUser(email, password);
     const accessToken = await generateToken(user);
     return {

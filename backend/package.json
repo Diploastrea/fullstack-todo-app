@@ -30,6 +30,7 @@
     "morgan": "^1.10.0",
     "mysql2": "^2.3.3",
     "sequelize": "^6.21.2",
+    "validator": "^13.7.0",
     "winston": "^3.7.2"
   },
   "devDependencies": {
