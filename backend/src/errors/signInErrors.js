@@ -1,4 +1,4 @@
-export const loginErrors = {
+export const signInErrors = {
   emptyFields: {
     status: 422,
     message: 'All fields are required.',

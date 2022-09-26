@@ -1,8 +1,8 @@
 import express from 'express';
 import cors from 'cors';
 import {
-  registerController,
-  loginController,
+  signUpController,
+  signInController,
 } from '../controllers';
 
 const router = express.Router();
@@ -10,8 +10,8 @@ const router = express.Router();
 router.use(cors());
 router.use(express.json());
 
-router.post('/register', registerController.register);
+router.post('/register', signUpController.signUpUser);
 
-router.post('/login', loginController.login);
+router.post('/login', signInController.signInUser);
 
 export default router;

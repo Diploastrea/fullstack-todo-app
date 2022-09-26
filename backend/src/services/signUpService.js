@@ -1,7 +1,7 @@
 import bcrypt from 'bcrypt';
 import { User } from '../models/User';
 
-export function validateRegistration(name, email, password) {
+export function validateSignUp(name, email, password) {
   if (!name && !email && !password) throw new Error('emptyFields');
   if (!name) throw new Error('emptyName');
   if (!email) throw new Error('emptyEmail');
@@ -48,9 +48,9 @@ export async function createUser(name, email, password) {
   return newUser;
 }
 
-export const registerService = {
-  async registerUser(name, email, password) {
-    validateRegistration(name, email, password);
+export const signUpService = {
+  async signUp(name, email, password) {
+    validateSignUp(name, email, password);
     await verifyName(name);
     await verifyEmail(email);
     const hashedPassword = await hashPassword(password);

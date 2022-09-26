@@ -1,4 +1,4 @@
-export const registerErrors = {
+export const signUpErrors = {
   emptyFields: {
     status: 422,
     message: 'All fields are required.',
