@@ -39,13 +39,6 @@ export async function createUser(name, email, password) {
     email,
     password,
   });
-  const newUser = User.findOne({
-    attributes: ['name', 'email'],
-    where: {
-      name,
-    },
-  });
-  return newUser;
 }
 
 export const signUpService = {
@@ -54,7 +47,6 @@ export const signUpService = {
     await verifyName(name);
     await verifyEmail(email);
     const hashedPassword = await hashPassword(password);
-    const newUser = await createUser(name, email, hashedPassword);
-    return newUser;
+    await createUser(name, email, hashedPassword);
   },
 };
