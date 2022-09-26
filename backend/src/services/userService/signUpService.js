@@ -1,5 +1,5 @@
 import bcrypt from 'bcrypt';
-import { User } from '../models/User';
+import { User } from '../../models/User';
 
 export function validateSignUp(name, email, password) {
   if (!name && !email && !password) throw new Error('emptyFields');

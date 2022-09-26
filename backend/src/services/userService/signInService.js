@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
-import config from '../config';
-import { User } from '../models/User';
+import config from '../../config';
+import { User } from '../../models/User';
 
 export function validateSignIn(email, password) {
   if (!email && !password) throw new Error('emptyFields');
