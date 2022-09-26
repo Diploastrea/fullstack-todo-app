@@ -1,5 +1,3 @@
-const { User } = require('../../models/User');
-
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('tasks', {
@@ -13,6 +11,7 @@ module.exports = {
       },
       priority: {
         type: Sequelize.ENUM,
+        values: ['low', 'medium', 'high'],
       },
       dueDate: {
         type: Sequelize.DATEONLY,
@@ -24,7 +23,7 @@ module.exports = {
       userId: {
         type: Sequelize.INTEGER,
         references: {
-          model: User,
+          model: 'users',
           key: 'id',
         },
       },
