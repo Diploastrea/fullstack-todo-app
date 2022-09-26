@@ -5,8 +5,8 @@ export const signUpController = {
   async signUpUser(req, res, next) {
     try {
       const { name, email, password } = req.body;
-      await signUpService.signUp(name, email, password);
-      res.status(201);
+      const response = await signUpService.signUp(name, email, password);
+      res.status(201).json(response);
     } catch (error) {
       next({
         status: signUpErrors[error.message].status,

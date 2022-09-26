@@ -1,12 +1,14 @@
 import bcrypt from 'bcrypt';
+import validator from 'validator';
 import { User } from '../../models/User';
 
 export function validateSignUp(name, email, password) {
   if (!name && !email && !password) throw new Error('emptyFields');
   if (!name) throw new Error('emptyName');
   if (!email) throw new Error('emptyEmail');
+  if (!validator.isEmail(email)) throw new Error('invalidEmail');
   if (!password) throw new Error('emptyPassword');
-  if (password.length < 8) throw new Error('shortPassword');
+  if (!validator.isStrongPassword(password, { minNumbers: 0 })) throw new Error('invalidPassword');
 }
 
 export async function verifyName(name) {
@@ -48,5 +50,6 @@ export const signUpService = {
     await verifyEmail(email);
     const hashedPassword = await hashPassword(password);
     await createUser(name, email, hashedPassword);
+    return { status: 'ok' };
   },
 };

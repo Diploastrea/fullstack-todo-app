@@ -5,13 +5,13 @@ module.exports = {
         name: 'user1',
         email: 'user1@example.com',
         password:
-          '$2a$10$oPkv6gkGZVJ/YjO1/sFKxuKdRblgvT1iMluSn9sn.MgfHtjDXGkOq',
+          '$2b$10$bAS9oW4Md0l/ZT8uj9qavuBYv.fAMLIftOU9SjkfOjHBjnpjZaw8i',
       },
       {
         name: 'user2',
         email: 'user2@example.com',
         password:
-          '$2a$10$Ac77ODYOKWUw5CJnAx1xA.217A7ovc5lkA8Pnv7JLB77EwzymV.tO',
+          '$2b$10$JeCahIUo7nrE508jxfWGT.fz26D/V9cd3eAaxwjXUIULGGuLjwsiG',
       },
     ]);
   },

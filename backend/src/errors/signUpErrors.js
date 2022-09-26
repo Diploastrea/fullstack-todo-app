@@ -11,13 +11,17 @@ export const signUpErrors = {
     status: 422,
     message: 'Email is required.',
   },
+  invalidEmail: {
+    status: 422,
+    message: 'Provided email is invalid.',
+  },
   emptyPassword: {
     status: 422,
     message: 'Password is required.',
   },
-  shortPassword: {
+  invalidPassword: {
     status: 422,
-    message: 'Password must be have least 8 characters.',
+    message: 'Password must have at least 8 characters, including 1 uppercase letter and 1 symbol.',
   },
   nameTaken: {
     status: 409,
