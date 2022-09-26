@@ -4,8 +4,9 @@ import { taskErrors } from '../errors';
 export const taskController = {
   async addTask(req, res, next) {
     try {
-      const { name, email, password } = req.body;
-      await addTaskService.addTask(name, email, password);
+      const { description, priority, dueDate } = req.body;
+      const { id: userId } = req.headers.user;
+      await addTaskService.addTask(description, priority, dueDate, userId);
       res.status(201);
     } catch (error) {
       next({

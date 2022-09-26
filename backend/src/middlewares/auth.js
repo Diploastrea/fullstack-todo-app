@@ -2,7 +2,7 @@ import { verify } from 'jsonwebtoken';
 import config from '../config';
 import 'dotenv/config';
 
-export function verifyToken(req, res, next) {
+export function auth(req, res, next) {
   try {
     const authHeader = req.headers.authorization;
     if (!authHeader) return res.sendStatus(401);

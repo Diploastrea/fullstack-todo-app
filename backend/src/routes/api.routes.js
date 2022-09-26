@@ -1,5 +1,6 @@
 import express from 'express';
 import cors from 'cors';
+import { auth } from '../middlewares/auth';
 import {
   signUpController,
   signInController,
@@ -15,6 +16,6 @@ router.post('/register', signUpController.signUpUser);
 
 router.post('/login', signInController.signInUser);
 
-router.post('/task', taskController.addTask);
+router.post('/task', auth, taskController.addTask);
 
 export default router;
