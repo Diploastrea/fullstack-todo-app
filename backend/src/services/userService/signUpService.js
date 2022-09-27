@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt';
 import validator from 'validator';
-import { sendEmail } from './sendEmailService';
+import { emailService } from '../emailService/emailService';
 import { User } from '../../models/User';
 
 export function validateSignUp(name, email, password) {
@@ -57,7 +57,7 @@ export const signUpService = {
     await verifyEmail(email);
     const hashedPassword = await hashPassword(password);
     const { id: userId } = await createUser(name, email, hashedPassword);
-    await sendEmail(userId, email);
+    emailService.sendEmail(userId, email);
     return { status: 'ok' };
   },
 };

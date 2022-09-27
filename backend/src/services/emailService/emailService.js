@@ -1,8 +1,9 @@
 import jwt from 'jsonwebtoken';
 import nodemailer from 'nodemailer';
 import config from '../../config';
+import { User } from '../../models/User';
 
-export async function sendEmail(userId, email) {
+export function sendConfirmation(userId, email) {
   const transporter = nodemailer.createTransport({
     service: 'Gmail',
     auth: {
@@ -28,3 +29,26 @@ export async function sendEmail(userId, email) {
     },
   );
 }
+
+export async function verifyToken(token) {
+  try {
+    const { userId } = jwt.verify(token, config.email_secret);
+    await User.update({
+      isVerified: true,
+      where: {
+        id: userId,
+      },
+    });
+  } catch (err) {
+    throw new Error('invalidToken');
+  }
+}
+
+export const emailService = {
+  sendEmail(userId, email) {
+    sendConfirmation(userId, email);
+  },
+  async verifyEmailToken(token) {
+    await verifyToken(token);
+  },
+};

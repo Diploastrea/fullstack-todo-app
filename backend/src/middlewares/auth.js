@@ -13,7 +13,7 @@ export function auth(req, res, next) {
       name: decodedToken.name,
     };
     return next();
-  } catch (error) {
+  } catch (err) {
     return res.status(401).json({
       status: 'error',
       message: 'Invalid token',
