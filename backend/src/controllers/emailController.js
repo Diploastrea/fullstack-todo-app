@@ -6,7 +6,7 @@ export const emailController = {
     try {
       const { token } = req.params;
       await emailService.verifyEmailToken(token);
-      res.redirect('https://localhost:3000');
+      res.json({ status: 'ok' });
     } catch (error) {
       next({
         status: emailErrors[error.message].status,

@@ -17,10 +17,10 @@ export function sendConfirmation(userId, email) {
     },
     config.email_secret,
     {
-      expiresIn: '20m',
+      expiresIn: '24h',
     },
     (err, emailToken) => {
-      const url = `https://localhost:8080/api/confirmation/${emailToken}`;
+      const url = `http://localhost:8080/api/confirmation/${emailToken}`;
       transporter.sendMail({
         to: email,
         subject: 'Confirm email',
@@ -35,6 +35,7 @@ export async function verifyToken(token) {
     const { userId } = jwt.verify(token, config.email_secret);
     await User.update({
       isVerified: true,
+    }, {
       where: {
         id: userId,
       },
