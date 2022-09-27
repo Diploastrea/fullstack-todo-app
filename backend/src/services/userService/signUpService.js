@@ -41,6 +41,7 @@ export async function createUser(name, email, password) {
     email,
     password,
   });
+  return true;
 }
 
 export const signUpService = {
