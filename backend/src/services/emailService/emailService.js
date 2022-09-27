@@ -17,14 +17,14 @@ export function sendConfirmation(userId, email) {
     },
     config.email_secret,
     {
-      expiresIn: '24h',
+      expiresIn: '20m',
     },
     (err, emailToken) => {
       const url = `http://localhost:8080/api/confirmation/${emailToken}`;
       transporter.sendMail({
         to: email,
         subject: 'Confirm email',
-        html: `Please click this link to confirm your email: <a href="${url}">${url}</a>`,
+        html: `Please click the following link to confirm your email: <a href="${url}">${url}</a>`,
       });
     },
   );
@@ -51,5 +51,9 @@ export const emailService = {
   },
   async verifyEmailToken(token) {
     await verifyToken(token);
+    return {
+      status: 'ok',
+      message: 'Email verified!',
+    };
   },
 };

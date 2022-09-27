@@ -58,6 +58,9 @@ export const signUpService = {
     const hashedPassword = await hashPassword(password);
     const { id: userId } = await createUser(name, email, hashedPassword);
     emailService.sendEmail(userId, email);
-    return { status: 'ok' };
+    return {
+      status: 'ok',
+      message: 'User successfully registered!',
+    };
   },
 };

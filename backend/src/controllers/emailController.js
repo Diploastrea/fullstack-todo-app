@@ -5,8 +5,8 @@ export const emailController = {
   async verifyEmailToken(req, res, next) {
     try {
       const { token } = req.params;
-      await emailService.verifyEmailToken(token);
-      res.json({ status: 'ok' });
+      const response = await emailService.verifyEmailToken(token);
+      res.status(200).json(response);
     } catch (error) {
       next({
         status: emailErrors[error.message].status,
