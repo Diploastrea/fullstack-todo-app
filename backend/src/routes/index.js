@@ -1,3 +1,3 @@
 import router from './api.routes';
 
-export default router;
+export const api = router;

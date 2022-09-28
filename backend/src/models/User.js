@@ -9,15 +9,15 @@ export const User = db.define('user', {
   },
   name: {
     type: DataTypes.STRING,
-    allowNul: false,
+    allowNull: false,
   },
   email: {
     type: DataTypes.STRING,
-    allowNul: false,
+    allowNull: false,
   },
   password: {
     type: DataTypes.STRING,
-    allowNul: false,
+    allowNull: false,
   },
   isVerified: {
     type: DataTypes.BOOLEAN,
