@@ -4,6 +4,7 @@ import { auth } from '../middlewares/auth';
 import {
   signUpController,
   signInController,
+  emailController,
   taskController,
 } from '../controllers';
 
@@ -15,6 +16,8 @@ router.use(express.json());
 router.post('/register', signUpController.signUpUser);
 
 router.post('/login', signInController.signInUser);
+
+router.get('/confirmation/:token', emailController.verifyEmailToken);
 
 router.post('/task', auth, taskController.addTask);
 

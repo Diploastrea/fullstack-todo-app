@@ -1,5 +1,6 @@
 import bcrypt from 'bcrypt';
 import validator from 'validator';
+import { emailService } from '../emailService/emailService';
 import { User } from '../../models/User';
 
 export function validateSignUp(name, email, password) {
@@ -41,6 +42,12 @@ export async function createUser(name, email, password) {
     email,
     password,
   });
+  const user = await User.findOne({
+    where: {
+      email,
+    },
+  });
+  return user;
 }
 
 export const signUpService = {
@@ -49,7 +56,11 @@ export const signUpService = {
     await verifyName(name);
     await verifyEmail(email);
     const hashedPassword = await hashPassword(password);
-    await createUser(name, email, hashedPassword);
-    return { status: 'ok' };
+    const { id: userId } = await createUser(name, email, hashedPassword);
+    emailService.sendEmail(userId, email);
+    return {
+      status: 'ok',
+      message: 'User successfully registered!',
+    };
   },
 };
