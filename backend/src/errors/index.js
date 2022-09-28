@@ -1,4 +1,1 @@
-export * from './signUpErrors';
-export * from './signInErrors';
-export * from './taskErrors';
-export * from './emailErrors';
+export * from './errorMessages';

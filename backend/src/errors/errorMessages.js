@@ -1,4 +1,4 @@
-export const signUpErrors = {
+export const errorMessages = {
   emptyFields: {
     status: 422,
     message: 'All fields are required.',
@@ -30,5 +30,13 @@ export const signUpErrors = {
   emailTaken: {
     status: 409,
     message: 'Email is already taken.',
+  },
+  incorrectCredentials: {
+    status: 401,
+    message: 'Email or password is incorrect.',
+  },
+  invalidToken: {
+    status: 401,
+    message: 'Email verification failed! Please try again.',
   },
 };
