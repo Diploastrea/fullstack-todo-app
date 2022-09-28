@@ -10,7 +10,7 @@ export const Task = db.define('task', {
   },
   description: {
     type: DataTypes.STRING,
-    allowNul: false,
+    allowNull: false,
   },
   priority: {
     type: DataTypes.ENUM,
@@ -18,7 +18,7 @@ export const Task = db.define('task', {
   },
   dueDate: {
     type: DataTypes.DATEONLY,
-    allowNul: false,
+    allowNull: false,
   },
   isDone: {
     type: DataTypes.BOOLEAN,
