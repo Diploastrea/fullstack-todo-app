@@ -1,17 +1,31 @@
 import request from 'supertest';
 import app from '../src/app';
+import { User } from '../src/models/User';
 
-describe('POST /api/register email tests', () => {
-  it('responds with status code 409 given email is already taken', async () => {
-    const registerData = {
+afterAll(() => jest.clearAllMocks());
+
+describe('POST /api/register email tests : ', () => {
+  it('responds with status code 400 given email is already taken', (done) => {
+    const mockFn = jest.fn();
+    mockFn.mockReturnValue({
       name: 'uniqueUser',
-      email: 'user1@example.com',
+      email: 'test@example.com',
+      password: 'Password.',
+    });
+    User.findOne = mockFn;
+    const registerData = {
+      name: 'user',
+      email: 'test@example.com',
       password: 'Password.',
     };
-    const { body } = await request(app)
+    request(app)
       .post('/api/register')
       .send(registerData)
-      .expect(409);
-    expect(body.message).toEqual('Email is already taken.');
+      .expect(409)
+      .end((err, res) => {
+        if (err) return done(err).expect(res.body.message).toEqual('Email is already taken.');
+        console.log(res.body);
+        return done();
+      });
   });
 });
