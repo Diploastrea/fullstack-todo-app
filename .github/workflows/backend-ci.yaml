@@ -25,9 +25,6 @@ jobs:
     - name: Install Dependencies
       run: npm install
       working-directory: ./backend
-    - name: Setting up mock database
-      run: npm run migration && npm run migration:data
-      working-directory: ./backend
     - name: Run Tests
       run: npm run test:ci -- --passWithNoTests
       working-directory: ./backend

@@ -11,8 +11,6 @@ describe('POST /api/register email tests', () => {
     const { body } = await request(app)
       .post('/api/register')
       .send(registerData)
-      .set('Accept', 'application/json')
-      .expect('Content-type', /json/)
       .expect(409);
     expect(body.message).toEqual('Email is already taken.');
   });
