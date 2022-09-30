@@ -42,12 +42,13 @@ export async function createUser(name, email, password) {
     email,
     password,
   });
-  const user = await User.findOne({
+  const newUser = await User.findOne({
+    attributes: ['id', 'email', 'isVerified'],
     where: {
       email,
     },
   });
-  return user;
+  return newUser;
 }
 
 export const signUpService = {
@@ -56,11 +57,8 @@ export const signUpService = {
     await verifyName(name);
     await verifyEmail(email);
     const hashedPassword = await hashPassword(password);
-    const { id: userId } = await createUser(name, email, hashedPassword);
-    emailService.sendEmail(userId, email);
-    return {
-      status: 'ok',
-      message: 'User successfully registered!',
-    };
+    const newUser = await createUser(name, email, hashedPassword);
+    emailService.sendEmail(newUser.id, email);
+    return { newUser };
   },
 };
