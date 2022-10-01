@@ -1,6 +1,6 @@
-import config from '../../config';
+const config = require('../../config');
 
-export const dbConfig = {
+module.exports = {
   development: {
     username: config.mysql.user,
     password: config.mysql.password,
