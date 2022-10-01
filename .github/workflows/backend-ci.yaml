@@ -34,10 +34,10 @@ jobs:
         ACCESS_TOKEN_SECRET: ${{ secrets.ACCESS_TOKEN_SECRET }}
         file_name: .env
         fail_on_empty: true
+    - name: Setup Database
+      run: npm run migration:all
     - name: Run Tests
-      run: |
-        npm run migration:all
-        npm run test:ci -- --passWithNoTests
+      run: npm run test:ci -- --passWithNoTests
       working-directory: ./backend
     - name: Run Linter
       run: npm run lint
