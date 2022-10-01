@@ -13,8 +13,9 @@
     "serve": "node -r dotenv/config dist/index.js",
     "sequelize": "sequelize init",
     "migration": "npx sequelize-cli db:migrate",
-    "migration:undo": "npx sequelize-cli db:migrate:undo:all",
-    "migration:data": "npx sequelize-cli db:seed:all"
+    "migration:data": "npx sequelize-cli db:seed:all",
+    "migration:all": "npm run migration && npm run migration:data",
+    "migration:undo": "npx sequelize-cli db:migrate:undo:all"
   },
   "keywords": [],
   "author": "",
