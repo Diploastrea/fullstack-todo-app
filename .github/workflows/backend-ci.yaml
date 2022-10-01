@@ -5,12 +5,12 @@ on:
     paths:
     - 'backend/**'
 env:
-  ACCESS_TOKEN_SECRET: ${{secrets.ACCESS_TOKEN_SECRET}}
-  PORT: ${{ env.PORT }}
-  MYSQL_HOST: ${{ env.MYSQL_HOST }}
-  MYSQL_USER: ${{ env.MYSQL_USER }}
-  MYSQL_PASSWORD: ${{ env.MYSQL_PASSWORD }}
-  MYSQL_DATABASE: ${{ env.MYSQL_DATABASE }}
+  ACCESS_TOKEN_SECRET: ${ secrets.ACCESS_TOKEN_SECRET }}
+  PORT: ${{ secrets.PORT }}
+  MYSQL_HOST: ${{ secrets.MYSQL_HOST }}
+  MYSQL_USER: ${{ secrets.MYSQL_USER }}
+  MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
+  MYSQL_DATABASE: ${{ secrets.MYSQL_DATABASE }}
 
 jobs:
   build:
