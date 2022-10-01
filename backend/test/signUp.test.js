@@ -11,9 +11,11 @@ describe('POST /api/register email tests : ', () => {
     request(app)
       .post('/api/register')
       .send(registerData)
-      .expect(409)
       .end((err, res) => {
-        if (err) return done(err).expect(res.body.message).toEqual('Email is already taken.');
+        console.log(res);
+        console.log(err);
+        if (err) return done(err);
+        expect(res.body.message).toEqual('Email is already taken.');
         return done();
       });
   });
