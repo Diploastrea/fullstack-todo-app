@@ -10,7 +10,7 @@ afterAll(async () => {
   await migrations.down();
 });
 
-test('responds with status code 200 given taken email', (done) => {
+test('responds with status code 409 given taken email', (done) => {
   request(app)
     .post('/api/register')
     .send({
