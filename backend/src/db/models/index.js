@@ -38,6 +38,8 @@ if (config.use_env_variable) {
       idle: 10000,
     },
   });
+  console.log(config.username);
+  console.log(sequelize);
 }
 
 fs
