@@ -20,7 +20,7 @@ const migrator = new Umzug({
   },
   context: sequelize.getQueryInterface(),
   storage: new SequelizeStorage({ sequelize }),
-  logger: console,
+  logger: undefined,
 });
 
 const seeder = new Umzug({
@@ -37,7 +37,7 @@ const seeder = new Umzug({
   },
   context: sequelize.getQueryInterface(),
   storage: new SequelizeStorage({ sequelize }),
-  logger: console,
+  logger: undefined,
 });
 
 export const migrations = {
