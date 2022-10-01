@@ -24,16 +24,16 @@ jobs:
       run: npm install
       working-directory: ./backend
     - name: Create .env file
-        uses: SpicyPizza/create-envfile@v1.3
-        with:
-          PORT: ${{ secrets.PORT }}
-          MYSQL_HOST: ${{ secrets.MYSQL_HOST }}
-          MYSQL_USER: ${{ secrets.MYSQL_USER }}
-          MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
-          MYSQL_DATABASE: ${{ secrets.MYSQL_DATABASE }}
-          ACCESS_TOKEN_SECRET: ${{ secrets.ACCESS_TOKEN_SECRET }}
-          file_name: .env
-          fail_on_empty: true
+      uses: SpicyPizza/create-envfile@v1.3
+      with:
+        PORT: ${{ secrets.PORT }}
+        MYSQL_HOST: ${{ secrets.MYSQL_HOST }}
+        MYSQL_USER: ${{ secrets.MYSQL_USER }}
+        MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
+        MYSQL_DATABASE: ${{ secrets.MYSQL_DATABASE }}
+        ACCESS_TOKEN_SECRET: ${{ secrets.ACCESS_TOKEN_SECRET }}
+        file_name: .env
+        fail_on_empty: true
     - name: Run Tests
       run: npm run test:ci -- --passWithNoTests
       working-directory: ./backend
