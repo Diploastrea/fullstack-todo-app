@@ -6,11 +6,11 @@
 const fs = require('fs');
 const path = require('path');
 const Sequelize = require('sequelize');
+const config = require('../../config');
 
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
 console.log(env);
-const config = require(__dirname + '/../config/config.js')[env];
 console.log(config);
 const db = {};
 
