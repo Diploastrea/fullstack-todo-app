@@ -8,4 +8,4 @@
 ## Deployment
 
 - `work in progress`
-https://fullstack-todo-app-c66ca.web.app/
+- https://fullstack-todo-app-c66ca.web.app/
