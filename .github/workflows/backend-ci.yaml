@@ -28,7 +28,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - run: mysql -h 127.0.0.1 --port 8080 -u root -ppassword -e 'CREATE DATABASE IF NOT EXISTS todo;'
+    - run: mysql -h 127.0.0.1 --port 3306 -u root -ppassword -e 'CREATE DATABASE IF NOT EXISTS todo;'
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
