@@ -13,12 +13,13 @@ describe('POST /api/register email tests : ', () => {
       .send(registerData)
       .set('Accept', 'application/json')
       .expect('Content-type', /json/)
+      // eslint-disable-next-line consistent-return
       .end((err, res) => {
+        if (err) {
+          done(err);
+        }
         console.log(res.body);
-        console.log(err);
-        if (err) return done(err);
-        expect(res.body.message).toEqual('Email is already taken.');
-        return done();
+        done();
       });
   });
 });
