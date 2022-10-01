@@ -8,12 +8,13 @@ describe('POST /api/register email tests: ', () => {
       email: 'user1@example.com',
       password: 'Password.',
     };
-    await request(app)
+    const res = await request(app)
       .post('/api/register')
       .send(registerData)
       .set('Accept', 'application/json')
       .expect('Content-type', /json/)
       .expect(409);
+    console.log(res.body);
   });
 
   it('responds with status code 201 given email is already taken', async () => {
@@ -22,11 +23,12 @@ describe('POST /api/register email tests: ', () => {
       email: 'user3@example.com',
       password: 'Password.',
     };
-    await request(app)
+    const res = await request(app)
       .post('/api/register')
       .send(registerData)
       .set('Accept', 'application/json')
       .expect('Content-type', /json/)
       .expect(201);
+    console.log(res.body);
   });
 });
