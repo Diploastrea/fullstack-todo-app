@@ -8,7 +8,7 @@ export default (err, req, res) => {
     ${req.method} - ${req.ip}`,
   );
   return res
-    .set({ 'content-type': 'application/json; charset=utf-8' })
+    .set({ 'Content-type': '/json/; charset=utf-8' })
     .status(errors[err.message].status || 500)
     .json(errors[err.message].message || 'Internal server error');
 };
