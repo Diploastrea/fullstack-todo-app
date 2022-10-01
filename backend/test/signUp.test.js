@@ -22,8 +22,8 @@ describe('POST /api/register email tests', () => {
     request(app)
       .post('/api/login')
       .send({
-        email: 'danifdas@example.com',
-        password: '1111',
+        email: 'user1@example.com',
+        password: 'Password.',
       })
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
