@@ -6,26 +6,11 @@ on:
     - 'backend/**'
 env:
   ACCESS_TOKEN_SECRET: ${ secrets.ACCESS_TOKEN_SECRET }}
-  PORT: ${{ secrets.PORT }}
-  MYSQL_HOST: ${{ secrets.MYSQL_HOST }}
-  MYSQL_USER: ${{ secrets.MYSQL_USER }}
-  MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
-  MYSQL_DATABASE: ${{ secrets.MYSQL_DATABASE }}
 
 jobs:
   build:
 
     runs-on: ubuntu-latest
-
-    services:
-      mysql:
-        image: mysql:5.7
-        env:
-          PORT: 8080
-          MYSQL_HOST: localhost
-          MYSQL_USER: root
-          MYSQL_PASSWORD: password
-          MYSQL_DATABASE: todo
 
     strategy:
       matrix:
