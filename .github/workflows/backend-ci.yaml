@@ -23,9 +23,6 @@ jobs:
     - name: Install Dependencies
       run: npm install
       working-directory: ./backend
-    - name: Setup Database
-      run: npm run migration:all
-      working-directory: ./backend
     - name: Run Tests
       run: npm run test:ci -- --passWithNoTests
       working-directory: ./backend
