@@ -15,15 +15,15 @@ jobs:
         node-version: [16.x]
 
     steps:
-    - name: Create .env file
-        uses: SpicyPizza/create-envfile@v1.3
+    - name: Dotenv Action
+        uses: falti/dotenv-action@v0.2.8
         with:
-          envkey_PORT: ${{ secrets.PORT }}
-          envkey_MYSQL_HOST: ${{ secrets.MYSQL_HOST }}
-          envkey_MYSQL_USER: ${{ secrets.MYSQL_USER }}
-          envkey_MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
-          envkey_MYSQL_DATABASE: ${{ secrets.MYSQL_DATABASE }}
-          envkey_ACCESS_TOKEN_SECRET: ${{ secrets.ACCESS_TOKEN_SECRET }}
+          envkey_PORT: ${{ steps.dotenv.outputs.port }}
+          envkey_MYSQL_HOST: ${{ steps.dotenv.outputs.port.mysql_host }}
+          envkey_MYSQL_USER: ${{ steps.dotenv.outputs.port.mysql_user }}
+          envkey_MYSQL_PASSWORD: ${{ steps.dotenv.outputs.port.mysql_password }}
+          envkey_MYSQL_DATABASE: ${{ steps.dotenv.outputs.port.mysql_database }}
+          envkey_ACCESS_TOKEN_SECRET: ${{ steps.dotenv.outputs.port.access_token_secret }}
           file_name: .env
           fail_on_empty: true
     - uses: actions/checkout@v2
