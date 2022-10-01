@@ -11,6 +11,8 @@ describe('POST /api/register email tests : ', () => {
     request(app)
       .post('/api/register')
       .send(registerData)
+      .set('Accept', 'application/json')
+      .expect('Content-type', /json/)
       .end((err, res) => {
         console.log(res.body);
         console.log(err);
