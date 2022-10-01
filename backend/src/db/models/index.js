@@ -16,8 +16,8 @@ let sequelize;
 if (config.use_env_variable) {
   sequelize = new Sequelize(process.env[config.use_env_variable], config);
 } else {
-  sequelize = new Sequelize(config.database, config.username, config.password, {
-    host: config.host,
+  sequelize = new Sequelize('todo', 'root', 'password', {
+    host: 'localhost',
     dialect: 'mysql',
     operatorAliases: false,
     dialectOptions: {
@@ -38,7 +38,6 @@ if (config.use_env_variable) {
       idle: 10000,
     },
   });
-  console.log(config.username);
   console.log(sequelize);
 }
 
