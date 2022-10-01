@@ -1,4 +1,4 @@
-# Todo app fullstack project
+# Todo app
 
 ## Folders
 
