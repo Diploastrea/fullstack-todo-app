@@ -36,6 +36,7 @@ jobs:
         fail_on_empty: true
     - name: Setup Database
       run: npm run migration:all
+      working-directory: ./backend
     - name: Run Tests
       run: npm run test:ci -- --passWithNoTests
       working-directory: ./backend
