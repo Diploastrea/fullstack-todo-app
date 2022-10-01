@@ -14,6 +14,22 @@ jobs:
       matrix:
         node-version: [16.x]
 
+  services:
+    mysql:
+      image: mysql:5.7
+      env:
+        MYSQL_DATABASE: todo
+        MYSQL_USER: user
+        MYSQL_PASSWORD: password
+      steps:
+      - name: Set up MySQL
+        run: |
+          sudo /etc/init.d/mysql start
+          mysql -e 'CREATE DATABASE ${{ env.DB_DATABASE }};' -u${{ env.DB_USER }} -p${{ env.DB_PASSWORD }}
+      ports:
+        - 33306:3306
+      options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+
     steps:
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
@@ -23,18 +39,6 @@ jobs:
     - name: Install Dependencies
       run: npm install
       working-directory: ./backend
-    - uses: shogo82148/actions-setup-mysql@v1.3.0
-      with:
-        mysql-version: '8.0'
-        auto-start: true
-    - name: create test database
-      run: mysql -h 127.0.0.1 -P 3306 -u root -e 'CREATE DATABASE todo;'
-    - name: show databases
-      run: mysql -h 127.0.0.1 -P 3306 -u root -e 'SHOW DATABASES;'
-    - name: setup user
-      run: mysql -h 127.0.0.1 -P 3306 -u root -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';"
-    - name: flush privileges
-      run: mysql -h 127.0.0.1 -P 3306 -u root -e 'FLUSH PRIVILEGES' -ppassword
     - name: Run Tests
       run: npm run test:ci -- --passWithNoTests
       working-directory: ./backend
