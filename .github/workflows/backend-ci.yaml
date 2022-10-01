@@ -4,8 +4,6 @@ on:
   pull_request:
     paths:
     - 'backend/**'
-env:
-  ACCESS_TOKEN_SECRET: ${ secrets.ACCESS_TOKEN_SECRET }}
 
 jobs:
   build:
@@ -22,6 +20,17 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
+    - name: Create .env file
+        uses: SpicyPizza/create-envfile@v1.3
+        with:
+          envkey_PORT: ${{ secrets.PORT }}
+          envkey_MYSQL_HOST: ${{ secrets.MYSQL_HOST }}
+          envkey_MYSQL_USER: ${{ secrets.MYSQL_USER }}
+          envkey_MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
+          envkey_MYSQL_DATABASE: ${{ secrets.MYSQL_DATABASE }}
+          envkey_ACCESS_TOKEN_SECRET: ${{ secrets.ACCESS_TOKEN_SECRET }}
+          file_name: .env
+          fail_on_empty: true
     - name: Install Dependencies
       run: npm install
       working-directory: ./backend
