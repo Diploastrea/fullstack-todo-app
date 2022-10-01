@@ -28,7 +28,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - run: mysql -h 127.0.0.1 --port 3306 -u root -ppassword'
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
@@ -37,7 +36,9 @@ jobs:
       run: npm install
       working-directory: ./backend
     - name: Run Tests
-      run: npm run test:ci -- --passWithNoTests
+      run: |
+        mysql -h 127.0.0.1 --port 3306 -u root -ppassword -e 'CREATE DATABASE IF NOT EXISTS todo;'
+        npm run test:ci -- --passWithNoTests
       working-directory: ./backend
     - name: Run Linter
       run: npm run lint
