@@ -16,6 +16,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - uses: shogo82148/actions-setup-mysql@v1
+      with:
+        mysql-version: '8.0'
+    - run: mysql -uroot -h127.0.0.1 -e 'SELECT version()'
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
@@ -23,18 +27,6 @@ jobs:
     - name: Install Dependencies
       run: npm install
       working-directory: ./backend
-    - uses: shogo82148/actions-setup-mysql@v1.3.0
-      with:
-        mysql-version: '8.0'
-        auto-start: true
-    - name: create test database
-      run: mysql -h 127.0.0.1 -P 3306 -u root -e 'CREATE DATABASE test_db;'
-    - name: show databases
-      run: mysql -h 127.0.0.1 -P 3306 -u root -e 'SHOW DATABASES;'
-    - name: setup user
-      run: mysql -h 127.0.0.1 -P 3306 -u root -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';"
-    - name: flush privileges
-      run: mysql -h 127.0.0.1 -P 3306 -u root -e 'FLUSH PRIVILEGES' -ppassword
     - name: Run Tests
       run: npm run test:ci -- --passWithNoTests
       working-directory: ./backend
