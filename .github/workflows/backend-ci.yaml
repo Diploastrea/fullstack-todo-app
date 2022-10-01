@@ -6,7 +6,10 @@ on:
     - 'backend/**'
 
 env:
-  MYSQL_HOST: ${{secrets.MYSQL_HOST}}
+  MYSQL_HOST: ${{ secrets.MYSQL_HOST }}
+  MYSQL_USER: ${{ secrets.MYSQL_USER }}
+  MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
+  MYSQL_DATABASE: ${{ secrets.MYSQL_DATABASE }}
 
 jobs:
   build:
