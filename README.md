@@ -1,6 +1,6 @@
 # Todo app
 
-## Folders
+## Folders & Tech Stack
 
-- `frontend`: frontend implemented with React
-- `backend`: backend implemented with Express.js
+- `frontend`: React, Material UI
+- `backend`: Express.js, MySQL, Sequelize, Umzug, Bcrypt, JWT, Jest  
