@@ -36,10 +36,7 @@ jobs:
       run: npm install
       working-directory: ./backend
     - name: Run Tests
-      run: |
-        sudo /etc/init.d/mysql start
-        mysql -e 'CREATE DATABASE todo;' -uroot -ppassword
-        npm run test:ci -- --passWithNoTests
+      run: npm run test:ci -- --passWithNoTests
       working-directory: ./backend
     - name: Run Linter
       run: npm run lint
