@@ -9,5 +9,5 @@ export default (err, req, res, next) => {
   );
   return res
     .status(errors[err.message].status || 500)
-    .json({ message: errors[err.message].message || 'Internal server error' });
+    .json(errors[err.message].message || 'Internal server error');
 };
