@@ -1,6 +1,7 @@
 import logger from './logger';
 import app from './app';
 import config from './config';
+import 'dotenv/config';
 
 const PORT = config.port || 8080;
 

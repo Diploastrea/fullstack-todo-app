@@ -4,8 +4,16 @@ on:
   pull_request:
     paths:
     - 'backend/**'
+
 env:
-  ACCESS_TOKEN_SECRET: ${{secrets.ACCESS_TOKEN_SECRET}}
+  MYSQL_HOST: ${{ secrets.MYSQL_HOST }}
+  MYSQL_USER: ${{ secrets.MYSQL_USER }}
+  MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
+  MYSQL_DATABASE: ${{ secrets.MYSQL_DATABASE }}
+  ACCESS_TOKEN_SECRET: ${{ secrets.ACCESS_TOKEN_SECRET }}
+  EMAIL_SECRET: ${{ secrets.EMAIL_SECRET }}
+  GMAIL_USER: ${{ secrets.GMAIL_USER }}
+  GMAIL_PASSWORD: ${{ secrets.GMAIL_PASSWORD }}
 
 jobs:
   build:
@@ -15,6 +23,15 @@ jobs:
     strategy:
       matrix:
         node-version: [16.x]
+
+    services:
+      mysql:
+        image: mysql:5.7
+        env:
+          MYSQL_ROOT_PASSWORD: password
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
 
     steps:
     - uses: actions/checkout@v2
@@ -26,7 +43,9 @@ jobs:
       run: npm install
       working-directory: ./backend
     - name: Run Tests
-      run: npm run test:ci -- --passWithNoTests
+      run: |
+        mysql -h 127.0.0.1 --port 3306 -u root -ppassword -e 'CREATE DATABASE IF NOT EXISTS todo;'
+        npm run test:ci -- --passWithNoTests
       working-directory: ./backend
     - name: Run Linter
       run: npm run lint

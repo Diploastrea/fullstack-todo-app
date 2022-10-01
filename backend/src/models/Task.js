@@ -1,8 +1,10 @@
 import { DataTypes } from 'sequelize';
-import { db } from '../data/connection';
 import { User } from './User';
+import db from '../db/models/index';
 
-export const Task = db.define('task', {
+const { sequelize } = db;
+
+export const Task = sequelize.define('task', {
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,

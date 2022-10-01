@@ -1,7 +1,9 @@
 import { DataTypes } from 'sequelize';
-import { db } from '../data/connection';
+import db from '../db/models/index';
 
-export const User = db.define('user', {
+const { sequelize } = db;
+
+export const User = sequelize.define('user', {
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
