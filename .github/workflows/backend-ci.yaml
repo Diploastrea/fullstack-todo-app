@@ -10,6 +10,10 @@ env:
   MYSQL_USER: ${{ secrets.MYSQL_USER }}
   MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
   MYSQL_DATABASE: ${{ secrets.MYSQL_DATABASE }}
+  ACCESS_TOKEN_SECRET: ${{ secrets.ACCESS_TOKEN_SECRET }}
+  EMAIL_SECRET: ${{ secrets.EMAIL_SECRET }}
+  GMAIL_USER: ${{ secrets.GMAIL_USER }}
+  GMAIL_PASSWORD: ${{ secrets.GMAIL_PASSWORD }}
 
 jobs:
   build:
