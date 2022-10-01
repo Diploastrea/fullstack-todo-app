@@ -12,7 +12,6 @@ describe('POST /api/register email tests: ', () => {
       .post('/api/register')
       .send(registerData)
       .set('Accept', 'application/json')
-      .expect('Content-type', /json/)
       .expect(409, done);
   });
 });
