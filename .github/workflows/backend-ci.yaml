@@ -34,6 +34,8 @@ jobs:
         ACCESS_TOKEN_SECRET: ${{ secrets.ACCESS_TOKEN_SECRET }}
         file_name: .env
         fail_on_empty: true
+    - name: Start App
+      run: npm start & npx wait-on http://localhost:3000
     - name: Run Tests
       run: npm run test:ci -- --passWithNoTests
       working-directory: ./backend
