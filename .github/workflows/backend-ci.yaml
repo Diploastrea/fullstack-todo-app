@@ -44,7 +44,7 @@ jobs:
       working-directory: ./backend
     - name: Run Tests
       run: |
-        mysql -h 127.0.0.1 --port 3306 -u root -ppassword -e 'CREATE DATABASE IF NOT EXISTS todo;'
+        mysql -h 127.0.0.1 --port 3306 -u root -p password -e 'CREATE DATABASE IF NOT EXISTS todo;'
         npm run test:ci -- --passWithNoTests
       working-directory: ./backend
     - name: Run Linter
