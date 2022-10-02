@@ -2,7 +2,6 @@
 /* eslint-disable prefer-template */
 /* eslint-disable no-path-concat */
 /* eslint-disable global-require */
-
 const fs = require('fs');
 const path = require('path');
 const Sequelize = require('sequelize');

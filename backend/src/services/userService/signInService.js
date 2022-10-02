@@ -22,7 +22,7 @@ export async function verifyUser(email, password) {
   return user;
 }
 
-export async function generateToken(user) {
+export function generateToken(user) {
   const { id, name } = user;
   return jwt.sign(
     {
@@ -40,7 +40,7 @@ export const signInService = {
   async signIn(email, password) {
     validateSignIn(email, password);
     const user = await verifyUser(email, password);
-    const accessToken = await generateToken(user);
+    const accessToken = generateToken(user);
     return {
       status: 'ok',
       token: accessToken,
