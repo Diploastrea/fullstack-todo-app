@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import { config } from '../../config';
+import config from '../../config';
 import { validateSignIn, generateToken } from '../userService/signInService';
 
 test('validateSignIn given no args', () => {

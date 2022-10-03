@@ -1,11 +1,11 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "main": "index.js",
   "jest": {
     "globalSetup": "./scripts/jestGlobalSetup.js",
     "globalTeardown": "./scripts/jestGlobalTeardown.js"
   },
+  "main": "index.js",
   "scripts": {
     "lint": "eslint . --ext .js",
     "lint:fix": "eslint . --fix",
