@@ -15,6 +15,7 @@ export const Task = sequelize.define('task', {
   },
   priority: {
     type: DataTypes.ENUM,
+    allowNull: false,
     values: ['low', 'medium', 'high'],
     validate: {
       isIn: {
