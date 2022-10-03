@@ -16,7 +16,7 @@ describe('POST /api/task', () => {
       .send({
         description: 'Do laundry',
         priority: 'medium',
-        dueDate: '03.10/2022',
+        dueDate: '03.10.22',
       });
     expect(res.status).toEqual(422);
     expect(res.body.message).toEqual('Please enter a date in YYYY-MM-DD format.');
