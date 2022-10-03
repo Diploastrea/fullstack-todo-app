@@ -17,6 +17,12 @@ export const Task = sequelize.define('task', {
   priority: {
     type: DataTypes.ENUM,
     values: ['low', 'medium', 'high'],
+    validate: {
+      isIn: {
+        args: [['low', 'medium', 'high']],
+        msg: 'Priority must be low, medium or high.',
+      },
+    },
   },
   dueDate: {
     type: DataTypes.DATEONLY,
