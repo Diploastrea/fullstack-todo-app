@@ -31,7 +31,7 @@ export const Task = sequelize.define('task', {
     allowNull: false,
     validate: {
       customValidator(value) {
-        if (!validator.isDate(value, { format: 'YYYY-MM-DD', strictMode: true })) {
+        if (!validator.isDate(value, { format: 'YYYYMMDD', strictMode: true })) {
           throw new Error('Please enter a date in YYYY-MM-DD format.');
         }
         if (new Date(value) < new Date(new Date().toDateString())) {
