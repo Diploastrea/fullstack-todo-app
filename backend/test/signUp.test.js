@@ -1,14 +1,5 @@
 import request from 'supertest';
 import app from '../src/app';
-import { migrations } from '../src/db/migrations';
-
-beforeAll(async () => {
-  await migrations.up();
-});
-
-afterAll(async () => {
-  await migrations.down();
-});
 
 describe('POST /api/register with invalid args', () => {
   it('responds with status code 409 given taken name', async () => {

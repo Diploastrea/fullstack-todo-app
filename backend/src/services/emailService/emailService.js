@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 import nodemailer from 'nodemailer';
-import config from '../../config';
+import { config } from '../../config';
 import { User } from '../../models/User';
 
 export function sendConfirmation(userId, email) {
