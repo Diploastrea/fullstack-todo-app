@@ -1,7 +1,5 @@
 import { DataTypes } from 'sequelize';
-import db from '../db/models/index';
-
-const { sequelize } = db;
+import { sequelize } from '../db/models/index';
 
 export const User = sequelize.define('user', {
   id: {

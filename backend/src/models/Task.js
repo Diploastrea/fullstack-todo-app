@@ -1,8 +1,7 @@
+import validator from 'validator';
 import { DataTypes } from 'sequelize';
 import { User } from './User';
-import db from '../db/models/index';
-
-const { sequelize } = db;
+import { sequelize } from '../db/models/index';
 
 export const Task = sequelize.define('task', {
   id: {
@@ -27,6 +26,16 @@ export const Task = sequelize.define('task', {
   dueDate: {
     type: DataTypes.DATEONLY,
     allowNull: false,
+    validate: {
+      customValidator(value) {
+        if (!validator.isDate(value, { format: 'YYYY-MM-DD', strictMode: true })) {
+          throw new Error('Please enter a date in YYYY-MM-DD format.');
+        }
+        if (new Date(value) < new Date(new Date().toDateString())) {
+          throw new Error('Please enter a valid date!');
+        }
+      },
+    },
   },
   isDone: {
     type: DataTypes.BOOLEAN,
