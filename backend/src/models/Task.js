@@ -1,7 +1,9 @@
 import validator from 'validator';
 import { DataTypes } from 'sequelize';
 import { User } from './User';
-import { sequelize } from '../db/models/index';
+import db from '../db/models/index';
+
+const { sequelize } = db;
 
 export const Task = sequelize.define('task', {
   id: {
