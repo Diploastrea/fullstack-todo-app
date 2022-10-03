@@ -5,8 +5,8 @@ export const taskController = {
     try {
       const { description, priority, dueDate } = req.body;
       const { id: userId } = req.headers.user;
-      const response = await addTaskService.addTask(description, priority, dueDate, userId);
-      res.status(201).json(response);
+      const newTask = await addTaskService.addTask(description, priority, dueDate, userId);
+      res.status(201).json(newTask);
     } catch (err) {
       next(err);
     }
