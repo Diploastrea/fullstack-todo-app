@@ -1,23 +1,22 @@
 import request from 'supertest';
 import app from '../src/app';
-import { migrations } from '../src/db/migrations';
+import { generateToken } from '../src/services/userService/signInService';
 
-beforeAll(async () => {
-  await migrations.up();
-});
+describe('POST /api/task', () => {
+  const user = {
+    id: 1,
+    name: 'user',
+  };
+  const token = generateToken(user);
 
-afterAll(async () => {
-  await migrations.down();
-});
-
-describe('POST /api/task with invalid args', () => {
   it('responds with status code 422 given date in wrong format', async () => {
     const res = await request(app)
       .post('/api/task')
+      .set('Authorization', `Bearer ${token}`)
       .send({
         description: 'Do laundry',
         priority: 'medium',
-        dueDate: '03/10/2022',
+        dueDate: '03.10.22',
       });
     expect(res.status).toEqual(422);
     expect(res.body.message).toEqual('Please enter a date in YYYY-MM-DD format.');
@@ -26,6 +25,7 @@ describe('POST /api/task with invalid args', () => {
   it('responds with status code 422 given due date in the past', async () => {
     const res = await request(app)
       .post('/api/task')
+      .set('Authorization', `Bearer ${token}`)
       .send({
         description: 'Do laundry',
         priority: 'medium',
@@ -34,12 +34,11 @@ describe('POST /api/task with invalid args', () => {
     expect(res.status).toEqual(422);
     expect(res.body.message).toEqual('Please enter a valid date!');
   });
-});
 
-describe('POST /api/task with valid args', () => {
   it('responds with status code 201 and new task', async () => {
     const res = await request(app)
       .post('/api/task')
+      .set('Authorization', `Bearer ${token}`)
       .send({
         description: 'Do laundry',
         priority: 'medium',

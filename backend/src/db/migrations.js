@@ -46,7 +46,13 @@ export const migrations = {
     await seeder.up();
   },
   async down() {
-    await seeder.down({ to: 0 });
-    await migrator.down({ to: 0 });
+    await seeder.down();
+    console.log('down 1');
+    await seeder.down();
+    console.log('down 2');
+    await migrator.down();
+    console.log('down 3');
+    await migrator.down();
+    console.log('down 4');
   },
 };
