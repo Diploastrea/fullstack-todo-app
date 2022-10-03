@@ -39,4 +39,16 @@ export const errorMessages = {
     status: 401,
     message: 'Email verification failed! Please try again.',
   },
+  invalidPriority: {
+    status: 422,
+    message: 'Priority must be low, medium or high.',
+  },
+  invalidDateFormat: {
+    status: 422,
+    message: 'Please enter a date in YYYY-MM-DD format.',
+  },
+  invalidDate: {
+    status: 422,
+    message: 'Please enter a valid date!',
+  },
 };

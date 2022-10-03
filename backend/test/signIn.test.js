@@ -1,7 +1,7 @@
 import request from 'supertest';
 import app from '../src/app';
 
-describe('POST /api/login with incorrect credentials', () => {
+describe('POST /api/login', () => {
   it('responds with status code 401 given incorrect email', async () => {
     const res = await request(app)
       .post('/api/login')
@@ -23,9 +23,7 @@ describe('POST /api/login with incorrect credentials', () => {
     expect(res.status).toEqual(401);
     expect(res.body.message).toEqual('Email or password is incorrect.');
   });
-});
 
-describe('POST /api/login with correct credentials', () => {
   it('responds with status code 200 given correct credentials', async () => {
     const res = await request(app)
       .post('/api/login')

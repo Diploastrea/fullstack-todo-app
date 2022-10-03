@@ -1,5 +1,8 @@
 import { migrations } from '../src/db/migrations';
 
+const { migrator, seeder } = migrations;
+
 export default async () => {
-  await migrations.up();
+  await migrator.up();
+  await seeder.up();
 };

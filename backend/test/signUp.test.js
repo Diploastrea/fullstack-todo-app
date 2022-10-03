@@ -25,9 +25,7 @@ describe('POST /api/register with invalid args', () => {
     expect(res.status).toEqual(409);
     expect(res.body.message).toEqual('Email is already taken.');
   });
-});
 
-describe('POST /api/register with valid args', () => {
   it('responds with status code 201 and new user', async () => {
     const res = await request(app)
       .post('/api/register')

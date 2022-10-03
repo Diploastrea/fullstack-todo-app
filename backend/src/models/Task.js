@@ -15,8 +15,8 @@ export const Task = sequelize.define('task', {
     allowNull: false,
   },
   priority: {
-    type: DataTypes.ENUM,
-    values: ['low', 'medium', 'high'],
+    type: DataTypes.ENUM('low', 'medium', 'high'),
+    allowNull: false,
   },
   dueDate: {
     type: DataTypes.DATEONLY,
