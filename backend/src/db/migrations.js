@@ -41,18 +41,6 @@ const seeder = new Umzug({
 });
 
 export const migrations = {
-  async up() {
-    await migrator.up();
-    await seeder.up();
-  },
-  async down() {
-    await seeder.down();
-    console.log('down 1');
-    await seeder.down();
-    console.log('down 2');
-    await migrator.down();
-    console.log('down 3');
-    await migrator.down();
-    console.log('down 4');
-  },
+  migrator,
+  seeder,
 };
