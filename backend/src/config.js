@@ -1,6 +1,6 @@
-require('dotenv/config');
+import 'dotenv/config';
 
-module.exports = {
+export const config = {
   port: process.env.PORT,
   mysql: {
     host: process.env.MYSQL_HOST,

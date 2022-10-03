@@ -1,14 +1,5 @@
 import request from 'supertest';
 import app from '../src/app';
-import { migrations } from '../src/db/migrations';
-
-beforeAll(async () => {
-  await migrations.up();
-});
-
-afterAll(async () => {
-  await migrations.down();
-});
 
 describe('POST /api/login with incorrect credentials', () => {
   it('responds with status code 401 given incorrect email', async () => {
