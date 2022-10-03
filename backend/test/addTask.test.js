@@ -45,6 +45,9 @@ describe('POST /api/task', () => {
         dueDate: '2025-01-01',
       });
     expect(res.status).toEqual(201);
-    expect(res.body.message).toEqual('Please enter a date in YYYY-MM-DD format.');
+    expect(res.body.id).toEqual(expect.any(Number));
+    expect(res.body.description).toEqual('Do laundry');
+    expect(res.body.priority).toEqual('medium');
+    expect(res.body.dueDate).toEqual('2025-01-01');
   });
 });
