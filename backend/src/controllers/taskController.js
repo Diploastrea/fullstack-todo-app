@@ -16,7 +16,7 @@ export const taskController = {
     try {
       const { id: userId } = req.headers.user;
       const tasks = await getTasksService.getTasks(userId);
-      res.status(201).json(tasks);
+      res.status(200).json(tasks);
     } catch (err) {
       next(err);
     }
