@@ -17,6 +17,7 @@ describe('GET /api/tasks', () => {
       .get('/api/tasks')
       .set('Authorization', `Bearer ${token1}`);
     expect(res.status).toEqual(200);
+    expect(res.body.userId).toEqual(1);
     expect(Array.isArray(res.body.tasks)).toEqual(true);
     expect(res.body.tasks.length).toEqual(2);
   });
@@ -26,6 +27,7 @@ describe('GET /api/tasks', () => {
       .get('/api/tasks')
       .set('Authorization', `Bearer ${token2}`);
     expect(res.status).toEqual(200);
+    expect(res.body.userId).toEqual(2);
     expect(Array.isArray(res.body.tasks)).toEqual(true);
     expect(res.body.tasks.length).toEqual(0);
   });
