@@ -11,10 +11,10 @@ describe('GET /api/tasks', () => {
 
   it('responds with status code 200 and user tasks', async () => {
     const res = await request(app)
-      .get('/api/task')
+      .get('/api/tasks')
       .set('Authorization', `Bearer ${token}`);
     expect(res.status).toEqual(200);
-    expect(res.body.tasks).toEqual(Array);
+    expect(Array.isArray(res.body.tasks)).toEqual(true);
     expect(res.body.tasks.length).toEqual(2);
   });
 });
