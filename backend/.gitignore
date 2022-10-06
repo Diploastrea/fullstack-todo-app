@@ -5,3 +5,4 @@ logs/
 yarn-error.log
 dist
 coverage
+todo-app.pem
