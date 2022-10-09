@@ -13,6 +13,12 @@ const router = express.Router();
 router.use(cors());
 router.use(express.json());
 
+router.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', 'YOUR-DOMAIN.TLD');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  next();
+});
+
 router.post('/register', signUpController.signUpUser);
 
 router.post('/login', signInController.signInUser);
