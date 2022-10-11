@@ -58,7 +58,7 @@ export const signUpService = {
     await verifyEmail(email);
     const hashedPassword = await hashPassword(password);
     const newUser = await createUser(name, email, hashedPassword);
-    emailService.sendEmail(newUser.id, email);
+    emailService.sendEmail(newUser.id, name, email);
     return newUser;
   },
 };

@@ -3,7 +3,7 @@ import nodemailer from 'nodemailer';
 import config from '../../config';
 import { User } from '../../models/User';
 
-export function sendConfirmation(userId, email) {
+export function sendConfirmation(userId, name, email) {
   const transporter = nodemailer.createTransport({
     service: 'Gmail',
     auth: {
@@ -24,7 +24,9 @@ export function sendConfirmation(userId, email) {
       transporter.sendMail({
         to: email,
         subject: 'Confirm email',
-        html: `Please click the following link to confirm your email: <a href="${url}">${url}</a>`,
+        html: `Dear ${name}, we are happy to welcome you to our to do application.
+        Please click the following link to confirm your email address:
+        <br> <a href="${url}">${url}</a>`,
       });
     },
   );
@@ -46,8 +48,8 @@ export async function verifyToken(token) {
 }
 
 export const emailService = {
-  sendEmail(userId, email) {
-    sendConfirmation(userId, email);
+  sendEmail(userId, name, email) {
+    sendConfirmation(userId, name, email);
   },
   async verifyEmailToken(token) {
     await verifyToken(token);
