@@ -33,13 +33,13 @@ export default function NotFound() {
       />
       <Grid item>
         <Button
-          href="/landing"
+          href="/tasks"
           size="large"
           variant="contained"
           endIcon={<SendIcon />}
           sx={{ marginTop: 5 }}
         >
-          Landing Page
+          Home page
         </Button>
       </Grid>
     </Grid>
