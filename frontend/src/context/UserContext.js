@@ -4,10 +4,13 @@ import { createContext, useState } from 'react';
 export const UserContext = createContext(null);
 
 export function UserProvider({ children }) {
-  const token = window.localStorage.getItem('token');
-  let decoded = null;
-  if (token) decoded = jwtDecode(token);
-  const user = useState(decoded ?? null);
+  let user = null;
+  (async () => {
+    const token = window.localStorage.getItem('token');
+    let decoded = null;
+    if (token) decoded = jwtDecode(token);
+    user = useState(decoded.name ?? null);
+  })();
 
   return (
     <UserContext.Provider value={user}>
