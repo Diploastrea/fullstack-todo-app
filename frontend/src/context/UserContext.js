@@ -4,16 +4,14 @@ import { createContext, useState } from 'react';
 export const UserContext = createContext(null);
 
 export function UserProvider({ children }) {
-  let user = null;
-  (async () => {
-    const token = window.localStorage.getItem('token');
-    let decoded = null;
-    if (token) decoded = jwtDecode(token);
-    user = useState(decoded.name ?? null);
-  })();
+  const token = window.localStorage.getItem('token');
+  let decoded = null;
+  if (token) decoded = jwtDecode(token);
+  const user = useState(decoded ?? null);
 
   return (
-    <UserContext.Provider value={user}>
+    // eslint-disable-next-line react/jsx-no-constructed-context-values
+    <UserContext.Provider value={{ user }}>
       {children}
     </UserContext.Provider>
   );

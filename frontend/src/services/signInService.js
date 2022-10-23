@@ -17,7 +17,7 @@ export default async function signInUser({
       setErrorMessage(data.message);
     } else {
       window.localStorage.setItem('token', data.token);
-      navigate('/landing');
+      navigate('/tasks');
       window.location.reload();
     }
   } catch (err) {
