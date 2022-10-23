@@ -6,11 +6,11 @@ import Tasks from './pages/Tasks';
 import NotFound from './pages/NotFound';
 
 function App() {
-  const { user } = useContext(UserContext);
+  const user = useContext(UserContext);
 
   return (
     <div>
-      {user[0] ? (
+      {user ? (
         <Routes>
           <Route path="/tasks" element={<Tasks />} />
           <Route path="/" element={<Homepage />} />
